@@ -12,7 +12,7 @@ module.exports = {
     .offset((page -1) * 5)
     .select([
       'product.*',       
-      'user.fullname', 
+      'user.username', 
       'user.password',
       'user.email',
       'user.city',

@@ -9,18 +9,18 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { fullname, password, email, city } = req.body;
+    const { username, password, email, city } = req.body;
 
     const id = generateUniqueId();
 
     await connection('user').insert({
       id,
-      fullname,
+      username,
       password,
       email,
       city,
     })
 
-    return res.json({ id })
+    return res.json('User registered')
   }
 }

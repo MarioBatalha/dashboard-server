@@ -9,19 +9,19 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { fullname, password, email, city, position } = req.body;
+    const { username, password, email, city, position } = req.body;
 
     const id = generateUniqueId();
 
-    await connection('user').insert({
+    await connection('admin').insert({
       id,
-      fullname,
+      username,
       password,
       email,
       city,
       position,
     })
 
-    return res.json({ id })
+    return res.json('Admin registered')
   }
 }

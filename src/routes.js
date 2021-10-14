@@ -15,9 +15,10 @@ routes.post('/sessions', SessionController.create)
 routes.get('/user', UserController.index);
 routes.post('/user', celebrate({
   [Segments.BODY]: Joi.object().keys({
-    fullname: Joi.string().required(),
+    username: Joi.string().required(),
     password: Joi.string().required(),
-    email: Joi.string().required().email(),
+    repeat_password: Joi.ref('password'),
+    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'dev', 'me', 'co'] } }).required(),
     city: Joi.string().required(),
   })
 }),UserController.create);
@@ -25,9 +26,11 @@ routes.post('/user', celebrate({
 routes.get('/admin', AdminController.index);
 routes.post('/admin', celebrate({
   [Segments.BODY]: Joi.object().keys({
-    fullname: Joi.string().required(),
+    username: Joi.string().required(),
     password: Joi.string().required(),
-    email: Joi.string().required().email(),
+    repeat_password: Joi.ref('password'),
+    email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'dev', 'me', 'co'] } }).required(),
+    city: Joi.string().required(),
     city: Joi.string().required(),
     position: Joi.string().required(),
   })
@@ -61,6 +64,6 @@ routes.delete('/product/:id', celebrate({
   [Segments.PARAMS]: Joi.object().keys({
     id: Joi.number().required(),
   })
-}), ProductController.delete)
+}), ProductController.delete);
 
 module.exports = routes;
