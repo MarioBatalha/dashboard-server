@@ -11,8 +11,7 @@ module.exports = {
     .limit(5)
     .offset((page -1) * 5)
     .select([
-      'product.*', 
-      
+      'product.*',       
       'user.fullname', 
       'user.password',
       'user.email',
@@ -28,7 +27,7 @@ module.exports = {
     const { title, price, qtd, description } = req.body;
     const user_id = req.headers.authorization;
 
-    const [id] = await connection('incidents').insert({
+    const [id] = await connection('product').insert({
       title, 
       price,
       qtd,
