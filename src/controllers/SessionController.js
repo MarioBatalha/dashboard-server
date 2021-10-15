@@ -2,9 +2,9 @@ const connection = require('../database/connection');
 
 module.exports = {
   async create(req, res){
-    const { username, password } = req.body;
+    const { email } = req.body;
 
-    const user = await connection('user').where('username', username, 'password', password,)
+    const user = await connection('user').where('email', email)
     .select('username')
     .first();
 
