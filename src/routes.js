@@ -42,7 +42,7 @@ routes.get('/profile', celebrate({
   }).unknown(),
 }), ProfileController.index);
 
-routes.get('/Product', celebrate({
+routes.get('/product', celebrate({
   [Segments.QUERY]: Joi.object().keys({
     page: Joi.number(),
   })
